@@ -5,7 +5,9 @@
     <div class="d-flex align-items-center py-5">
         <div class="me-auto">
             <h1>{{ $project->title }}</h1>
-            <p>/{{ $project->slug }}</p>
+            <p class="fs-6"><span>Slug: </span>{{ $project->slug }}</p>
+            <p class="fs-6"><span>Data di Creazione: </span>{{ $project->created_at }}</p>
+            <p class="fs-6"><span>Ultima modifica: </span>{{ $project->created_at }}</p>
         </div>
 
         <div>

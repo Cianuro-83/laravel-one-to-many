@@ -18,16 +18,6 @@
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])
 </head>
-<style>
-    body{
-        background-color: black !important;
-        color: white !important;
-    }
-</style>
-
-
-
-
 <body>
     <div id="app">
 

@@ -12,7 +12,7 @@
           </div>
       
           <div class="container text-">
-            <table class="table text-white table-responsive table-inverse">
+            <table class="table  text-white table-responsive table-inverse">
               <thead>
                 <tr>
                   <th>ID</th>
@@ -21,7 +21,7 @@
                   <th>Web</th>
                   <th>Slug</th>
                   <th>Data creazione</th>
-                  <th>Data modifica</th>
+                  <th>Ultima modifica</th>
                   <th></th>
                   
                 </tr>

@@ -39,7 +39,12 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        //
+        // $new_project=Comic::create($data);
+
+        // if (isset($data['checkbox']))
+        //       return to_route('projects.create');
+        // else
+        //      return to_route('projects.show', $new_project);
     }
 
     /**
@@ -73,7 +78,9 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        //
+        // $project->update($data);
+
+        // return to_route('projects.show', $project);
     }
 
     /**
