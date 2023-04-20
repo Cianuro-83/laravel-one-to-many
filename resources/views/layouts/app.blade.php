@@ -18,6 +18,15 @@
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])
 </head>
+<style>
+    body{
+        background-color: black !important;
+        color: white !important;
+    }
+</style>
+
+
+
 
 <body>
     <div id="app">
@@ -46,6 +55,14 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{url('/') }}">{{ __('Home') }}</a>
                         </li>
+                        @auth
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('projects.index') }}">{{ __('Projects') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('projects.create') }}">{{ __('Add New') }}</a>
+                        </li>   
+                        @endauth
                     </ul>
 
                     <!-- Right Side Of Navbar -->
