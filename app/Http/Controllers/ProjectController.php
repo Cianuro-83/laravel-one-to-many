@@ -38,18 +38,19 @@ class ProjectController extends Controller
      * @param  \App\Http\Requests\StoreProjectRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreProjectRequest $request)
+    public function store(StoreProjectRequest $request )
     {
         $data=$request->validated();
 
         $data['slug']=Str::slug( $data['title'] );
+        
 
-        $new_project=ComiProjectc::create($data);
+        $new_project=Project::create($data);
 
         if (isset($data['checkbox']))
-              return to_route('projects.create');
-        else
-             return to_route('projects.show', $new_project);
+        return to_route('projects.create');
+         else
+       return to_route('projects.show', $new_project);
     }
 
     /**
@@ -86,7 +87,7 @@ class ProjectController extends Controller
         $data=$request->validated();
 
         if ($data['title'] != $project->title){
-            $data['slug'] = Str::slug()($data['title']);
+            $data['slug'] = Str::slug($data['title']);
         }
         $project->update($data);
 
