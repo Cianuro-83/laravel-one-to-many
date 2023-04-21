@@ -39,7 +39,7 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        // $new_project=Comic::create($data);
+        // $new_project=ComiProjectc::create($data);
 
         // if (isset($data['checkbox']))
         //       return to_route('projects.create');
