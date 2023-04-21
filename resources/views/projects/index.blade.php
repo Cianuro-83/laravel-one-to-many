@@ -1,7 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
+
     <div class="container">
+
+      @if(request()->session()->exists('message'))
+
+      <div class="alert alert-primary" role="alert">
+        {{ request()->session()->pull('message') }}
+      </div>
+
+      @endif
+
+
+
+
         <div class="container py-5">
             <div class="d-flex align-items-center">
               <h1 class="me-auto text-uppercase text-warning">i mie lavori</h1>
@@ -56,7 +69,7 @@
                           @if(request('trashed'))
                           <form action="{{ route('projects.restore',$project) }}" method="POST">
                             @csrf
-                            <input class="btn btn-sm btn-outline-success" type="submit" value="Ripristina">
+                            <input class="btn btn-sm btn-outline-success" type="submit" value="RIPRISTINA">
                           </form>
                           @else
                           <a class="btn btn-sm btn-outline-warning mt-3 me-1" href="{{ route('projects.edit',$project) }}">MODIFICA</a>
@@ -75,29 +88,17 @@
                       </form>
                       @endif
                     </td>
-                          
-
-                        
-                          
-                          
-                          
-                          
-                          
-                          
-                          
-                          
-                          
-                          
-                          
-                          
-                          
-                          
                         </div>
                       </td>
                     </tr>
                 @empty
                   <tr>
-                    <th colspan="7" class="text-uppercase text-center fw-bolder">Nessun lavoro trovato</th>
+
+                    @if(request('trashed'))
+                    <th colspan="8" class="text-uppercase text-center fw-bolder">il cestino è vuoto</th>
+                      @else
+                      <th colspan="8" class="text-uppercase text-center fw-bolder">Nessun lavoro trovato</th>
+                      @endif
                   </tr>
                 @endforelse
               </tbody>
