@@ -6,6 +6,12 @@
             <div class="d-flex align-items-center">
               <h1 class="me-auto text-uppercase text-warning">i mie lavori</h1>
               <div>
+                @if(request('trashed'))
+                <a class="btn btn-outline-info text-uppercase fw-bolder me-2" href="{{ route('projects.index') }}">Tutti i miei progetti</a>
+              @else
+                <a class="btn btn-outline-info text-uppercase fw-bolder me-2" href="{{ route('projects.index',['trashed' => true]) }}">Cestino ({{ $num_of_trashed}})</a>
+              @endif
+    
                 <a class="btn btn-outline-success text-uppercase fw-bolder" href="{{ route('projects.create') }}">+ add new +</a>
               </div>
             </div>
