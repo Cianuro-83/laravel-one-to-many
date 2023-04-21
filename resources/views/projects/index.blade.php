@@ -36,8 +36,8 @@
                       <td>{{ $project->customer }}</td>
                       <td>{{ $project->url }}</td>
                       <td>{{ $project->slug }}</td>
-                      <td>{{ $project->created_at }}</td>
-                      <td>{{ $project->updated_at }}</td>
+                      <td>{{ $project->created_at->format('d/m/y') }}</td>
+                      <td>{{ $project->updated_at->format('d/m/y') }}</td>
                       <td>
                         <div class="d-flex ">
                           <a class="btn btn-sm btn-outline-warning mt-3 me-1" href="{{ route('projects.edit',$project) }}">MODIFICA</a>
