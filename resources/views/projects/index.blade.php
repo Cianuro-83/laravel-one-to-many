@@ -40,7 +40,12 @@
                       <td>{{ $project->updated_at }}</td>
                       <td>
                         <div class="d-flex ">
-                          <a class="btn btn-sm btn-outline-warning mt-3" href="{{ route('projects.edit',$project) }}">MODIFICA</a>
+                          <a class="btn btn-sm btn-outline-warning mt-3 me-1" href="{{ route('projects.edit',$project) }}">MODIFICA</a>
+                          <form action="{{route('projects.destroy', $project)}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <input type="submit" value="ELIMINA" class="btn btn-sm btn-outline-danger mt-3 ms-1">
+                          </form>
                         </div>
                       </td>
                     </tr>

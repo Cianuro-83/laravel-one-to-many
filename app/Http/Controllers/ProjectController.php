@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
 use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
@@ -15,11 +16,20 @@ class ProjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $projects = Project::all();
+        $trashed = $request->input('trashed');
 
-        return view('projects.index', compact('projects'));
+        if ($trashed) {
+            $projects = Project::onlyTrashed()->get();
+        } else {
+            $projects = Project::all();
+        }
+
+        $num_of_trashed = Project::onlyTrashed()->count();
+
+        return view('projects.index', compact('projects', 'num_of_trashed'));
+
     }
 
     /**
@@ -94,6 +104,18 @@ class ProjectController extends Controller
         return to_route('projects.show', $project);
     }
 
+    public function restore(Request $request, Project $project)
+    {
+
+        if ($project->trashed()) {
+            $project->restore();
+
+            $request->session()->flash('message', 'Il riprisino è avvenuto con successo.');
+        }
+
+        return back();
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -102,8 +124,11 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        $project->delete();
-
-        return to_route('projects.index');
+        if ($project->trashed()) {
+            $project->forceDelete(); // HARD DELETE
+        } else {
+            $project->delete(); //SOFT DELETE
+        }
+        return back();
     }
 }
