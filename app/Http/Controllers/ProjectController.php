@@ -6,6 +6,7 @@ use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
 use App\Http\Controllers\ProjectController;
+use Illuminate\Support\Str;
 
 class ProjectController extends Controller
 {
@@ -39,12 +40,16 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        // $new_project=ComiProjectc::create($data);
+        $data=$request->validated();
 
-        // if (isset($data['checkbox']))
-        //       return to_route('projects.create');
-        // else
-        //      return to_route('projects.show', $new_project);
+        $data['slug']=Str::slug( $data['title'] );
+
+        $new_project=ComiProjectc::create($data);
+
+        if (isset($data['checkbox']))
+              return to_route('projects.create');
+        else
+             return to_route('projects.show', $new_project);
     }
 
     /**
@@ -78,9 +83,14 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        // $project->update($data);
+        $data=$request->validated();
 
-        // return to_route('projects.show', $project);
+        if ($data['title'] != $project->title){
+            $data['slug'] = Str::slug()($data['title']);
+        }
+        $project->update($data);
+
+        return to_route('projects.show', $project);
     }
 
     /**
