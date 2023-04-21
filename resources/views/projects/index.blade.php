@@ -11,8 +11,7 @@
               @else
                 <a class="btn btn-outline-info text-uppercase fw-bolder me-2" href="{{ route('projects.index',['trashed' => true]) }}">Cestino ({{ $num_of_trashed}})</a>
               @endif
-    
-                <a class="btn btn-outline-success text-uppercase fw-bolder" href="{{ route('projects.create') }}">+ add new +</a>
+                  <a class="btn btn-outline-success text-uppercase fw-bolder" href="{{ route('projects.create') }}">+ add new +</a>
               </div>
             </div>
           </div>
@@ -27,8 +26,12 @@
                   <th>Web</th>
                   <th>Slug</th>
                   <th>Data creazione</th>
+                  @if(request('trashed'))
+                  <th >Data cancellazione</th>
+                  @else
                   <th>Ultima modifica</th>
-                  <th></th>
+                  @endif
+                  <th>Azioni</th>
                   
                 </tr>
               </thead>
@@ -43,15 +46,52 @@
                       <td>{{ $project->url }}</td>
                       <td>{{ $project->slug }}</td>
                       <td>{{ $project->created_at->format('d/m/y') }}</td>
+                      @if(request('trashed'))
+                      <td>{{$project->deleted_at->format('d/m/y')}}</td>
+                      @else
                       <td>{{ $project->updated_at->format('d/m/y') }}</td>
+                      @endif
                       <td>
-                        <div class="d-flex ">
+                        <div>
+                          @if(request('trashed'))
+                          <form action="{{ route('projects.restore',$project) }}" method="POST">
+                            @csrf
+                            <input class="btn btn-sm btn-outline-success" type="submit" value="Ripristina">
+                          </form>
+                          @else
                           <a class="btn btn-sm btn-outline-warning mt-3 me-1" href="{{ route('projects.edit',$project) }}">MODIFICA</a>
+                          @endif
+                          @if(request('trashed'))
                           <form action="{{route('projects.destroy', $project)}}" method="POST">
                             @csrf
                             @method('DELETE')
                             <input type="submit" value="ELIMINA" class="btn btn-sm btn-outline-danger mt-3 ms-1">
                           </form>
+                      @else
+                      <form action="{{route('projects.destroy', $project)}}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <input type="submit" value="CESTINA" class="btn btn-sm btn-outline-danger mt-3 ms-1">
+                      </form>
+                      @endif
+                    </td>
+                          
+
+                        
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
                         </div>
                       </td>
                     </tr>
