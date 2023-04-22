@@ -56,11 +56,13 @@ class ProjectController extends Controller
         
 
         $new_project=Project::create($data);
-
+        
+        // dd($data);
         if (isset($data['checkbox']))
         return to_route('projects.create');
          else
        return to_route('projects.show', $new_project);
+
     }
 
     /**

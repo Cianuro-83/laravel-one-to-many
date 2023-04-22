@@ -27,7 +27,8 @@ class StoreProjectRequest extends FormRequest
      'title' => 'required|max:150|unique:projects,title',
             'description' => 'string|nullable',
             'url' => 'nullable|url',
-            'customer' =>'required|string'
+            'customer' =>'required|string',
+            'checkbox' => 'nullable'
         ];
     }
 }

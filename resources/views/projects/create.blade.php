@@ -55,8 +55,8 @@
                       </div>
             {{-- CHECKBOX --}}
                       <div class="form-check mb-3">
-                        <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="checkbox">
-                        <label class="form-check-label" for="flexCheckDefault">
+                        <input class="form-check-input" type="checkbox" value="1" id="checkbox" name="checkbox">
+                        <label class="form-check-label" for="checkbox">
                           RESTA NELLA PAGINA DI CREAZIONE
                         </label>
                       </div>
