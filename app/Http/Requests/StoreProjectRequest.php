@@ -28,7 +28,8 @@ class StoreProjectRequest extends FormRequest
             'description' => 'string|nullable',
             'url' => 'nullable|url',
             'customer' =>'required|string',
-            'checkbox' => 'nullable'
+            'checkbox' => 'nullable',
+            'type_id' => 'nullable|exists:types,id',
         ];
     }
 }
