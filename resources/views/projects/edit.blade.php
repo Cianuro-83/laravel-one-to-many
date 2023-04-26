@@ -21,6 +21,34 @@
               </div>
             </div>
 
+
+            <div class="row mb-3 ">
+              <label for="type" class="col-sm-2 col-form-label">TIPOLOGIA</label>
+              <div class="col-sm-10">
+                <select class="form-select @error('type_id') is-invalid @enderror" id="type-id" name="type_id" aria-label="Default select example">
+                  <option value="" selected>Seleziona una Tipologia</option>
+                  @foreach ($types as $type)
+                    <option @selected( old('type_id', $project->type_id) == $type->id ) value="{{ $type->id }}">{{ $type->name }}</option>
+                  @endforeach
+                </select>
+                @error('type_id')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+              @enderror
+            </div>
+          </div>
+
+            
+
+
+
+
+
+
+
+
+
             <div class="row mb-3">
                 <label for="customer" class="col-sm-2 col-form-label">CLIENTE</label>
                 <div class="col-sm-10">

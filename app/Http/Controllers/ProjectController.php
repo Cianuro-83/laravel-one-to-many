@@ -8,6 +8,7 @@ use App\Models\Project;
 use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\Type;
 
 class ProjectController extends Controller
 {
@@ -39,7 +40,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('projects.create');
+        $types= Type::orderBy('name', 'asc')->get();
+        return view('projects.create', compact('types'));
     }
 
     /**
@@ -84,7 +86,9 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        return view('projects.edit', compact('project'));
+        $types= Type::orderBy('name', 'asc')->get();
+
+        return view('projects.edit', compact('project', 'types'));
     }
 
     /**
