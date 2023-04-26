@@ -16,7 +16,7 @@
               @if(request('trashed'))
               <h1 class="me-auto text-uppercase text-warning">Cestino</h1>
               @else
-              <h1 class="me-auto text-uppercase text-warning">i mie lavori new repo</h1>
+              <h1 class="me-auto text-uppercase text-warning">i mie lavori</h1>
               @endif
 
               <div>
@@ -41,9 +41,9 @@
                 <tr>
                   <th>ID</th>
                   <th>Nome Progetto</th>
+                  <th>Tipologia</th>
                   <th>Cliente</th>
                   <th>Web</th>
-                  <th>Slug</th>
                   <th>Data creazione</th>
                   @if(request('trashed'))
                   <th >Data cancellazione</th>
@@ -61,9 +61,9 @@
                       <td>
                         <a href="{{ route('projects.show',$project) }}">{{ $project->title }}</a>
                       </td>
+                      <td class="text-center">{{ $project->type ? $project->type->name : '---'  }}</td>
                       <td>{{ $project->customer }}</td>
                       <td>{{ $project->url }}</td>
-                      <td>{{ $project->slug }}</td>
                       <td>{{ $project->created_at->format('d/m/y') }}</td>
                       @if(request('trashed'))
                       <td>{{$project->deleted_at->format('d/m/y')}}</td>
