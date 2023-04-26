@@ -133,4 +133,13 @@ class ProjectController extends Controller
         }
         return back();
     }
+
+
+    public function destroyAll()
+    {
+        $projects= Project::onlyTrashed()->truncate();
+
+
+        return back();
+    }
 }

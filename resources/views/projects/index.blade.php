@@ -11,16 +11,22 @@
       </div>
 
       @endif
-
-
-
-
         <div class="container py-5">
             <div class="d-flex align-items-center">
+              @if(request('trashed'))
+              <h1 class="me-auto text-uppercase text-warning">Cestino</h1>
+              @else
               <h1 class="me-auto text-uppercase text-warning">i mie lavori</h1>
+              @endif
+
               <div>
                 @if(request('trashed'))
                 <a class="btn btn-outline-info text-uppercase fw-bolder me-2" href="{{ route('projects.index') }}">Tutti i miei progetti</a>
+                <form action="{{route('projects.destroy.all')}}" method="POST">
+                  @csrf
+                  @method('DELETE')
+                  <input type="submit" class="my-2 btn btn-outline-danger btn fw-bolder text-end" value="SVUOTA CESTINO">
+                </form>
               @else
                 <a class="btn btn-outline-info text-uppercase fw-bolder me-2" href="{{ route('projects.index',['trashed' => true]) }}">Cestino ({{ $num_of_trashed}})</a>
               @endif
