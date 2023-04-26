@@ -16,7 +16,7 @@
               @if(request('trashed'))
               <h1 class="me-auto text-uppercase text-warning">Cestino</h1>
               @else
-              <h1 class="me-auto text-uppercase text-warning">i mie lavori</h1>
+              <h1 class="me-auto text-uppercase text-warning">i mie lavori new repo</h1>
               @endif
 
               <div>
