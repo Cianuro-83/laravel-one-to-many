@@ -4,6 +4,15 @@
 <div class="container">
     <div class="d-flex align-items-center py-5">
         <div class="me-auto">
+            <div>
+                @if ($project->type)
+                <p class="badge text-bg-info">{{$project->type->name}}</p>
+
+                @else
+                <p class="badge text-bg-danger">{{'NESSUNA TIPOLOGIA ASSOCIATA'}}</p>
+                    
+                @endif
+            </div>
             <h1>{{ $project->title }}</h1>
             <p class="fs-6"><span>Slug: </span>{{ $project->slug }}</p>
             <p class="fs-6"><span>Data di Creazione: </span>{{ $project->created_at }}</p>
