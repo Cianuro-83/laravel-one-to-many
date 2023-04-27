@@ -30,4 +30,23 @@
         {{ $project->description }}
     </p>
 </div>
+
+<div class="container">
+    <h4 class="text-uppercase">progetti correlati</h4>
+    @if ($project->type)
+    <ul>
+        @foreach ($project->type->projects as $related_project )
+        <li>
+            <a href="{{route('projects.show', $related_project)}}">
+                {{$related_project->title}}
+        </a>
+        </li>
+            
+        @endforeach
+    </ul>
+        @else
+        <h4 class="text-uppercase">nessun progetto correlato</h4>
+
+    @endif
+</div>
 @endsection
